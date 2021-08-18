@@ -1,0 +1,17 @@
+html {
+  font-size: 10px;
+}
+
+.layout {
+  background-color: var(--color-white);
+}
+
+.wrapper {
+  width: calc(100% - 80px);
+  max-width: 1200px;
+  margin: auto;
+
+  @media screen and (max-width: 800px) {
+    width: calc(100% - 40px);
+  }
+}
