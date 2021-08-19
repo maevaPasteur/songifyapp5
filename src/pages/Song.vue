@@ -16,6 +16,7 @@
                 <div v-html="lyrics"></div>
                 <p>{{ words.length }}</p>
             </div>
+            <Giphy v-if="words.length" :words="words"/>
         </div>
     </div>
 </template>
@@ -24,10 +25,11 @@
 
     import {mapState, mapActions} from 'vuex';
     import Heart from "../components/Heart";
+    import Giphy from "../components/Giphy";
 
     export default {
         name: 'Song',
-        components: {Heart},
+        components: {Giphy, Heart},
         data() {
             return {
                 id: this.$route.params.id,

@@ -70,6 +70,13 @@
         .btn {
             margin-right: 20px;
             margin-left: auto;
+
+            @media screen and (max-width: 520px) {
+                font-size: 1.2rem;
+                min-height: 35px;
+                padding: 0 10px;
+                min-width: auto;
+            }
         }
 
         &__switch {
@@ -81,6 +88,10 @@
                 text-transform: uppercase;
                 font-size: 1.2rem;
                 font-weight: 600;
+
+                @media screen and (max-width: 520px) {
+                    display: none;
+                }
             }
 
             button {
