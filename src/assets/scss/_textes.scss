@@ -12,6 +12,10 @@ body, button, input, select {
   @media screen and (max-width: 800px) {
     font-size: 1.4rem;
   }
+
+  @media screen and (max-width: 600px) {
+    text-align: center;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {

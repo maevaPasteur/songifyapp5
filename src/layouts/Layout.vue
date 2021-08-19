@@ -4,6 +4,7 @@
             <router-link :to="{name: 'home'}">
                 <h1>Songify</h1>
             </router-link>
+            <router-link :to="{name: 'favorites'}" class="btn">Mes favoris</router-link>
             <div class="header__switch" @click="switchMode">
                 <span v-if="isDarkMode">Dark Mode</span>
                 <span v-else>Light Mode</span>
@@ -64,6 +65,11 @@
 
         @media screen and (max-width: 800px) {
             padding: 0 20px;
+        }
+
+        .btn {
+            margin-right: 20px;
+            margin-left: auto;
         }
 
         &__switch {
