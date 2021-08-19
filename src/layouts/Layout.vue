@@ -1,7 +1,9 @@
 <template>
     <div class="layout" :class="{'dark-mode': isDarkMode}">
         <header class="header">
-            <h1>Songify</h1>
+            <router-link :to="{name: 'home'}">
+                <h1>Songify</h1>
+            </router-link>
             <div class="header__switch" @click="switchMode">
                 <span v-if="isDarkMode">Dark Mode</span>
                 <span v-else>Light Mode</span>
