@@ -4,6 +4,7 @@ import Vue from 'vue';
 // Import Pages
 import Home from '@/pages/Home';
 import Song from '@/pages/Song';
+import Favorites from '../pages/Favorites';
 
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ const router = new Router({
             path: '/sons/:id',
             name: 'song',
             component: Song
+        },
+        {
+            path: '/mes-favoris',
+            name: 'favorites',
+            component: Favorites
         }
     ]
 });

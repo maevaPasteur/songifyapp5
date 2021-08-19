@@ -4,6 +4,7 @@
             <div class="song-banner">
                 <img :src="song.cover" :alt="song.track">
                 <div>
+                    <Heart :song="song"/>
                     <h2>{{ song.track }}</h2>
                     <p>Par {{ song.artist }}</p>
                     <p>Album {{ song.album }}</p>
@@ -15,6 +16,7 @@
                 <div v-html="lyrics"></div>
                 <p>{{ words.length }}</p>
             </div>
+            <Giphy v-if="words.length" :words="words"/>
         </div>
     </div>
 </template>
@@ -22,9 +24,12 @@
 <script>
 
     import {mapState, mapActions} from 'vuex';
+    import Heart from "../components/Heart";
+    import Giphy from "../components/Giphy";
 
     export default {
         name: 'Song',
+        components: {Giphy, Heart},
         data() {
             return {
                 id: this.$route.params.id,
@@ -40,7 +45,7 @@
                 if (!this.song.lyrics) return [];
                 let lyrics = this.song.lyrics.lyrics.replaceAll(/ \[[\s\S]*?\]/g, '').replaceAll('\n', ' ').replaceAll('\r', ' ').replaceAll('.', ' ');
                 // On garde uniquement les mots de plus de 3 lettres
-                lyrics = lyrics.split(' ').filter(e => e.length > 4);
+                lyrics = lyrics.split(' ').filter(e => e.length > 4 && !e.includes('*'));
                 let wordsCount = [];
                 lyrics.forEach(word => {
                     let wordExisting = wordsCount.find(e => e.value === word);
@@ -57,7 +62,7 @@
                 return wordsCount.sort((a,b) => b.count - a.count).slice(0, 10);
             },
             lyrics() {
-                let lyrics = this.song.lyrics.lyrics;
+                let lyrics = this.song.lyrics.lyrics.replaceAll(/ \[[\s\S]*?\]/g, '');
                 if (this.words.length) {
                     this.words.forEach(word => {
                         lyrics = lyrics.replaceAll(word.value, `<strong>${word.value}</strong>`)
@@ -87,6 +92,10 @@
     .song-banner {
         display: flex;
 
+        @media screen and (max-width: 600px) {
+            flex-direction: column-reverse;
+        }
+
         img {
             flex-shrink: 0;
             margin-right: 20px;
@@ -94,6 +103,16 @@
             height: 300px;
             border-radius: 6px;
             background-color: var(--color-1);
+
+            @media screen and (max-width: 800px) {
+                width: 200px;
+                height: 200px;
+            }
+
+            @media screen and (max-width: 600px) {
+                margin-right: auto;
+                margin-left: auto;
+            }
         }
     }
 

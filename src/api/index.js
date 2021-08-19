@@ -8,11 +8,15 @@ const API = {
         }
     }),
     giphy: axios.create({
-        baseURL: 'https://api.giphy.com/v1/gifs/',
-        headers: {
-            'api_key': 'lPrSjJo6qBjvuzvwnO6ubEY1FMZOJbOD'
-        }
+        baseURL: 'https://api.giphy.com/v1/gifs/'
     })
 };
+
+API.giphy.interceptors.request.use(config => {
+    return {
+        ...config,
+        url: `${config.url}&api_key=lPrSjJo6qBjvuzvwnO6ubEY1FMZOJbOD`
+    }
+});
 
 export default API;
