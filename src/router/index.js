@@ -3,6 +3,7 @@ import Vue from 'vue';
 
 // Import Pages
 import Home from '@/pages/Home';
+import Song from '@/pages/Song';
 
 Vue.use(Router);
 
@@ -17,6 +18,11 @@ const router = new Router({
             path: '/',
             name: 'home',
             component: Home
+        },
+        {
+            path: '/sons/:id',
+            name: 'song',
+            component: Song
         }
     ]
 });

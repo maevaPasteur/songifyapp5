@@ -9,11 +9,18 @@
 <script>
 
     import Layout from './layouts/Layout.vue'
+    import {mapActions} from 'vuex';
 
     export default {
         name: 'App',
         components: {
             Layout
+        },
+        methods: {
+            ...mapActions(['getFavorites'])
+        },
+        mounted() {
+            this.getFavorites()
         }
     }
 
